@@ -2,6 +2,7 @@ module dboy.gameboy;
 
 import derelict.sdl2.sdl;
 import std.stdio;
+import dboy.emulator;
 
 static const int SCREEN_WIDTH = 160;
 static const int SCREEN_HEIGHT = 144;
@@ -12,15 +13,21 @@ static const int SCREEN_HEIGHT = 144;
  */
 final class Gameboy
 {
-	// The window we'll be rendering to
-	private static SDL_Window* window;
-	// The surface contained by the window
-	private static SDL_Surface* screenSurface;
-	
-	// Constructor
+	private static SDL_Window* window; // The window we'll be rendering to
+	private static SDL_Surface* screenSurface; // The surface contained by the window
+	private static Emulator emulator;	
+	private static string romName;
+
+	// Constructors
 	static this()
 	{
 		DerelictSDL2.load();
+	}
+
+	this(string RomName)
+	{
+		this.emulator = new Emulator();
+		this.romName = RomName;
 	}
 	
 	// Destructor
@@ -78,6 +85,8 @@ final class Gameboy
 	void Render()
 	{
 		//TODO: Implement
+		//pixels = emulator.getScreenData;
+		//drawToWindow(pixels);
 	}
 
 	/*
@@ -86,6 +95,6 @@ final class Gameboy
 	 */
 	void BeginEmulation()
 	{
-		//TODO: Implement
+		this.emulator.LoadRom(this.romName);
 	}
 }
