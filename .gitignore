@@ -1,0 +1,12 @@
+# dboy binary
+dboy
+
+# Vim swap file
+*.swp
+
+# defaults
+.dub
+docs.json
+__dummy.html
+*.o
+*.obj
